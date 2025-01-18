@@ -23,7 +23,7 @@ public enum Length {
 
         if(length.rare){
             double confidenceInterval = Math.random() * 10;
-            if(confidenceInterval <= 0.01){
+            if(confidenceInterval <= 0.001){
                 return length;
             }
 
