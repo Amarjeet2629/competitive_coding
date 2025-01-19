@@ -1,6 +1,7 @@
 package org.cp.LLD.snakeAndLadder.service;
 
 import org.cp.LLD.snakeAndLadder.entity.IDice;
+import org.cp.LLD.snakeAndLadder.entity.IObservable;
 import org.cp.LLD.snakeAndLadder.entity.Player;
 import org.cp.LLD.snakeAndLadder.entity.Position;
 
@@ -11,13 +12,17 @@ public class GameManager {
     BoardManager boardManager;
     IDice dice;
     int boardSize;
+    IObservable gameEventObservable;
 
-    public GameManager(Queue<Player> listOfPlayers, BoardManager boardManager, IDice dice, int boardSize){
-
+    public GameManager(Queue<Player> listOfPlayers,
+                       BoardManager boardManager,
+                       IDice dice, int boardSize,
+                       IObservable gameEventObservable){
         this.listOfPlayers = listOfPlayers;
         this.boardManager = boardManager;
         this.dice = dice;
         this.boardSize = boardSize;
+        this.gameEventObservable = gameEventObservable;
     }
 
     public void beginGame(){
@@ -34,7 +39,10 @@ public class GameManager {
             int movesToMake = dice.rollDice();
 
             if(!boardManager.isValidMove(currentPosition + movesToMake)){
-                System.out.println(player.getName() + " rolled a " + movesToMake +  " and moved from " + currentPosition + " to " + (movesToMake + currentPosition) + ", Invalid Move.");
+                gameEventObservable.notifyGameEvent(player, " rolled a " + movesToMake +
+                        " and moved from " +
+                        currentPosition + " to "
+                        + (movesToMake + currentPosition) + ", Invalid Move.");
                 continue;
             }
 
@@ -46,9 +54,7 @@ public class GameManager {
             );
 
             finalPosition = position.getX() * boardSize + position.getY() + 1;
-
-            System.out.println(player.getName() + " rolled a " + movesToMake +  " and moved from " + currentPosition + " to " + finalPosition);
-
+            gameEventObservable.notifyGameEvent(player, " rolled a " + movesToMake +  " and moved from " + currentPosition + " to " + finalPosition);
             player.setPosition(position);
 
             if(finalPosition == boardSize * boardSize){
@@ -57,6 +63,6 @@ public class GameManager {
             }
         }
 
-        System.out.println("Winner is " + winner.getName());
+        gameEventObservable.notifyGameEnd(winner);
     }
 }
