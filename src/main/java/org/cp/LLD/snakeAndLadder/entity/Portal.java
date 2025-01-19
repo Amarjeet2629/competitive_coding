@@ -19,7 +19,4 @@ public abstract class Portal {
         return endPosition;
     }
 
-    public PortalType getPortalType() {
-        return portalType;
-    }
 }

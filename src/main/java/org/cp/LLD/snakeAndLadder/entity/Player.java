@@ -11,9 +11,6 @@ public class Player {
         this.position = new Position(0, -1 );
     }
 
-    public int getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
