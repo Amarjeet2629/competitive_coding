@@ -1,6 +1,6 @@
 package org.cp.LLD.ticTacToe;
 
-import org.cp.LLD.ticTacToe.entity.Player;
+import org.cp.LLD.ticTacToe.entity.*;
 import org.cp.LLD.ticTacToe.service.GameManager;
 import org.cp.LLD.ticTacToe.service.PieceFactory;
 
@@ -25,8 +25,13 @@ public class Main {
         players.add(player1);
         players.add(player2);
 
+        IObservable gameEventNotifier = new GameEventNotifier();
+        IObserver UiLogger = new UILogger();
 
-        GameManager gameManager = new GameManager(players);
+        gameEventNotifier.addObserver(UiLogger);
+
+
+        GameManager gameManager = new GameManager(players, gameEventNotifier);
         gameManager.startGame();
     }
 }
