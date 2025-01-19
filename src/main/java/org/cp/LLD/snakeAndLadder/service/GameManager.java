@@ -18,8 +18,6 @@ public class GameManager {
         this.boardManager = boardManager;
         this.dice = dice;
         this.boardSize = boardSize;
-
-        beginGame();
     }
 
     public void beginGame(){
@@ -35,8 +33,8 @@ public class GameManager {
             //roll the dice
             int movesToMake = dice.rollDice();
 
-            if(boardManager.isValidMove(currentPosition + movesToMake)){
-                System.out.println(player.getName() + " rolled a " + movesToMake +  " and moved from " + currentPosition + " to " + movesToMake + currentPosition + ", Invalid Move.");
+            if(!boardManager.isValidMove(currentPosition + movesToMake)){
+                System.out.println(player.getName() + " rolled a " + movesToMake +  " and moved from " + currentPosition + " to " + (movesToMake + currentPosition) + ", Invalid Move.");
                 continue;
             }
 
@@ -53,7 +51,7 @@ public class GameManager {
 
             player.setPosition(position);
 
-            if(finalPosition == 100){
+            if(finalPosition == boardSize * boardSize){
                 isGameOver = true;
                 winner = player;
             }
