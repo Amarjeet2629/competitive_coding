@@ -1,6 +1,5 @@
 package org.cp.LLD.snakeAndLadder.service;
 
-import org.cp.LLD.snakeAndLadder.entity.Dice;
 import org.cp.LLD.snakeAndLadder.entity.IDice;
 import org.cp.LLD.snakeAndLadder.entity.Player;
 import org.cp.LLD.snakeAndLadder.entity.Position;
