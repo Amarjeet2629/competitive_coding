@@ -1,6 +1,7 @@
 package org.cp.LLD.snakeAndLadder.service;
 
 import org.cp.LLD.snakeAndLadder.entity.Dice;
+import org.cp.LLD.snakeAndLadder.entity.IDice;
 import org.cp.LLD.snakeAndLadder.entity.Player;
 import org.cp.LLD.snakeAndLadder.entity.Position;
 
@@ -9,10 +10,10 @@ import java.util.Queue;
 public class GameManager {
     Queue<Player> listOfPlayers;
     BoardManager boardManager;
-    Dice dice;
+    IDice dice;
     int boardSize;
 
-    public GameManager(Queue<Player> listOfPlayers, BoardManager boardManager, Dice dice, int boardSize){
+    public GameManager(Queue<Player> listOfPlayers, BoardManager boardManager, IDice dice, int boardSize){
 
         this.listOfPlayers = listOfPlayers;
         this.boardManager = boardManager;
@@ -35,7 +36,7 @@ public class GameManager {
             //roll the dice
             int movesToMake = dice.rollDice();
 
-            if(movesToMake + currentPosition > 100){
+            if(boardManager.isValidMove(currentPosition + movesToMake)){
                 System.out.println(player.getName() + " rolled a " + movesToMake +  " and moved from " + currentPosition + " to " + movesToMake + currentPosition + ", Invalid Move.");
                 continue;
             }
@@ -43,7 +44,8 @@ public class GameManager {
             int finalPosition = movesToMake + currentPosition;
 
             Position position = this.boardManager.getFinalPosition(
-                    new Position((finalPosition - 1) / boardSize, (finalPosition - 1) % boardSize)
+                    new Position((finalPosition - 1) / boardSize,
+                             (finalPosition - 1) % boardSize)
             );
 
             finalPosition = position.getX() * boardSize + position.getY() + 1;

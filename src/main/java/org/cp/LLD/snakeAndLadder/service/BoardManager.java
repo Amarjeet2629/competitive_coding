@@ -38,4 +38,8 @@ public class BoardManager {
         return getFinalPosition(portal.getEndPosition());
     }
 
+    boolean isValidMove(int positionToReach){
+        return positionToReach <= size * size;
+    }
+
 }
