@@ -2,12 +2,13 @@ package org.cp.LLD.cursorPagination.service;
 
 import org.cp.LLD.cursorPagination.entity.ResponseData;
 import org.cp.LLD.cursorPagination.entity.Transaction;
+import org.cp.LLD.cursorPagination.interfaces.IPagination;
 import org.cp.LLD.cursorPagination.repository.IRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CursorPagination {
+public class CursorPagination implements IPagination<Transaction> {
     IRepository<Transaction> transactionRepository = null;
 
     public CursorPagination(IRepository<Transaction> transactionRepository){
