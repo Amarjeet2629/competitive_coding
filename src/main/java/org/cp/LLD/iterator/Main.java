@@ -1,6 +1,8 @@
 package org.cp.LLD.iterator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class Main {
@@ -97,5 +99,54 @@ public class Main {
 
             System.out.print(" | ");
         }
+
+        System.out.println();
+
+        SkipIterator<Integer> integerSkipIterator = new SkipIterator<>(new ArrayList<>(
+                Arrays.asList(1, 2, 3, 4, 5)
+        ), 2);
+
+        while (integerSkipIterator.hasNext()){
+            Integer value = integerSkipIterator.next();
+            System.out.print(value);
+            if(integerSkipIterator.hasNext()){
+                System.out.print(", ");
+            }
+        }
+
+        System.out.println();
+
+        ReverseIterator<Integer> reverseIterator = new ReverseIterator<>(new ArrayList<>(
+                Arrays.asList(1, 2, 3, 4)
+        ));
+
+        while (reverseIterator.hasNext()){
+            Integer value = reverseIterator.next();
+            System.out.print(value);
+            if(reverseIterator.hasNext()){
+                System.out.print(", ");
+            }
+        }
+
+        System.out.println();
+
+        PriorityIterator<Integer> priorityIterator = new PriorityIterator<>(new ArrayList<>(Arrays.asList(5, 4, 1, 2, 3)), new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1 - o2;
+            }
+        });
+
+        while (priorityIterator.hasNext()){
+            Integer value = priorityIterator.next();
+            System.out.print(value);
+            if(priorityIterator.hasNext()){
+                System.out.print(", ");
+            }
+        }
+
+        System.out.println();
+
+
     }
 }
