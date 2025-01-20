@@ -1,11 +1,10 @@
 package org.cp.LLD.cursorPagination;
 
-import org.cp.LLD.cursorPagination.entity.ResponseData;
-import org.cp.LLD.cursorPagination.entity.Transaction;
-import org.cp.LLD.cursorPagination.entity.TransactionType;
+import org.cp.LLD.cursorPagination.entity.*;
 import org.cp.LLD.cursorPagination.repository.IRepository;
 import org.cp.LLD.cursorPagination.repository.TransactionRepository;
 import org.cp.LLD.cursorPagination.service.CursorPagination;
+import org.cp.LLD.cursorPagination.service.TransactionFilterBuilder;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -25,13 +24,30 @@ public class APIDriver {
                     LocalDateTime.now().minusHours(100000 - i)));
         }
 
+        //Fetch Data without filter
         ResponseData<Transaction> responseData = null;
 
         while(responseData == null || responseData.isHasMore()){
-            responseData = cursorPagination.fetchPage(7, responseData == null ? null : responseData.getCursor());
+            responseData = cursorPagination.fetchPage(7, responseData == null ? null : responseData.getCursor(), null);
             printData(responseData.getData());
         }
 
+        //Fetch data with filters
+        System.out.println("Printing Filtered data");
+        responseData = null;
+
+        TransactionFilterBuilder transactionFilterBuilder = new TransactionFilterBuilder();
+        transactionFilterBuilder
+                .filterByAmountGreaterThan(new BigDecimal(10))
+                .filterByAmountLessThan(new BigDecimal(50))
+                .filterByTimestampLessThan(System.currentTimeMillis() - 100000000000L);
+
+        Filter<Transaction> filter = new Filter<>(FilterType.AND, transactionFilterBuilder.build());
+
+        while(responseData == null || responseData.isHasMore()){
+            responseData = cursorPagination.fetchPage(7, responseData == null ? null : responseData.getCursor(), filter);
+            printData(responseData.getData());
+        }
     }
 
     private static void printData(List<Transaction> transactions){

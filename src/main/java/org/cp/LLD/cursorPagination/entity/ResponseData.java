@@ -3,7 +3,7 @@ package org.cp.LLD.cursorPagination.entity;
 import java.util.List;
 
 public class ResponseData <T>{
-    private final List<T> data;
+    private List<T> data;
     private final Long cursor;
     private final boolean hasMore;
     //More fields can be added if we need to modify the response data
@@ -24,6 +24,10 @@ public class ResponseData <T>{
 
     public boolean isHasMore(){
         return this.hasMore;
+    }
+
+    public void setData(List<T> data){
+        this.data = data;
     }
 
 
