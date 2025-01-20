@@ -37,6 +37,15 @@ public class Main {
             }
         }
 
-        customIterator.next();
+        System.out.println();
+        //Cyclic Iterator
+        CycleIterator<Integer> cycleIterator = new CycleIterator<>(Arrays.asList(1,2,3), 2);
+
+        while(cycleIterator.hasNext()){
+            System.out.print(cycleIterator.next());
+            if(cycleIterator.hasNext()){
+                System.out.print(", ");
+            }
+        }
     }
 }
