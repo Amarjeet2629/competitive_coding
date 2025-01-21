@@ -81,7 +81,7 @@ public class GameManager {
     }
 
     private boolean isGameCompleted(Slot slot, Piece piece){
-        return winningStrategyList.stream().anyMatch(winningStrategy -> winningStrategy.accept(board.getGrid(), piece, slot));
+        return winningStrategyList.stream().anyMatch(winningStrategy -> winningStrategy.checkWin(board.getGrid(), piece, slot));
     }
 
 

@@ -4,7 +4,9 @@ import org.cp.LLD.cursorPagination.entity.*;
 import org.cp.LLD.cursorPagination.repository.IRepository;
 import org.cp.LLD.cursorPagination.repository.TransactionRepository;
 import org.cp.LLD.cursorPagination.service.CursorPagination;
+import org.cp.LLD.cursorPagination.service.ITransactionSortingStrategy;
 import org.cp.LLD.cursorPagination.service.TransactionFilterBuilder;
+import org.cp.LLD.cursorPagination.service.impl.FeeSortedStrategy;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,7 +15,8 @@ import java.util.List;
 public class APIDriver {
     public static void main(String ...args){
         IRepository<Transaction> transactionIRepository = TransactionRepository.getInstance();
-        CursorPagination cursorPagination = new CursorPagination(transactionIRepository);
+        ITransactionSortingStrategy transactionSortingStrategy = new FeeSortedStrategy();
+        CursorPagination cursorPagination = new CursorPagination(transactionIRepository, transactionSortingStrategy);
 
         //Populate Data for 100000 entries
         for(int i = 0; i < 100; i++){

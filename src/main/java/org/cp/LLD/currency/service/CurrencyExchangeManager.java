@@ -1,23 +1,23 @@
 package org.cp.LLD.currency.service;
 
 import org.cp.LLD.currency.entity.Currency;
-import org.cp.LLD.currency.entity.CurrencyExchange;
+import org.cp.LLD.currency.entity.CurrencyExchangeValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class CurrencyExchangeManager {
-    public static double exchangeCurrency(Currency start, Currency end, List<CurrencyExchange> currencyExchanges, int currencyCnt){
-        List<CurrencyExchange> duplicateExchanges = new ArrayList<>();
+    public static double exchangeCurrency(Currency start, Currency end, List<CurrencyExchangeValue> currencyExchanges, int currencyCnt){
+        List<CurrencyExchangeValue> duplicateExchanges = new ArrayList<>();
         int n = currencyExchanges.size();
 
         for(int i = 0; i < n; i++){
-            duplicateExchanges.add(new CurrencyExchange(currencyExchanges.get(i).getStartCurrency(),
+            duplicateExchanges.add(new CurrencyExchangeValue(currencyExchanges.get(i).getStartCurrency(),
                     currencyExchanges.get(i).getEndCurrency(),
                     -Math.log10(currencyExchanges.get(i).getValue())));
 
-            duplicateExchanges.add(new CurrencyExchange(currencyExchanges.get(i).getEndCurrency(),
+            duplicateExchanges.add(new CurrencyExchangeValue(currencyExchanges.get(i).getEndCurrency(),
                     currencyExchanges.get(i).getStartCurrency(),
                     Math.log10(1/currencyExchanges.get(i).getValue())));
         }
@@ -32,7 +32,7 @@ public class CurrencyExchangeManager {
         disMap.put(start, 0.0);
 
         for(int i = 1; i < currencyCnt; i++){
-            for(CurrencyExchange currencyExchange : duplicateExchanges){
+            for(CurrencyExchangeValue currencyExchange : duplicateExchanges){
                 Currency startCurrency = currencyExchange.getStartCurrency();
                 Currency endCurrency = currencyExchange.getEndCurrency();
 
