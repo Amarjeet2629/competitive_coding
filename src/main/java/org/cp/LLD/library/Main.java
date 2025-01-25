@@ -1,10 +1,10 @@
 package org.cp.LLD.library;
 
 import org.cp.LLD.library.models.Book;
-import org.cp.LLD.library.service.FilterBuilder;
+import org.cp.LLD.library.service.impl.FilterBuilder;
 import org.cp.LLD.library.service.IObservable;
 import org.cp.LLD.library.service.IObserver;
-import org.cp.LLD.library.service.LibraryManager;
+import org.cp.LLD.library.service.impl.LibraryManager;
 import org.cp.LLD.library.service.impl.EventNotifier;
 import org.cp.LLD.library.service.impl.UiLogger;
 

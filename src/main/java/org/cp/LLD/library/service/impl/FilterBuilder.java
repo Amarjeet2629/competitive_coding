@@ -1,4 +1,4 @@
-package org.cp.LLD.library.service;
+package org.cp.LLD.library.service.impl;
 
 import org.cp.LLD.library.models.Book;
 

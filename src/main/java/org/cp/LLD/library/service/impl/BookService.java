@@ -1,10 +1,11 @@
-package org.cp.LLD.library.service;
+package org.cp.LLD.library.service.impl;
 
 import org.cp.LLD.library.models.Book;
 import org.cp.LLD.library.models.Status;
 import org.cp.LLD.library.models.User;
 import org.cp.LLD.library.repository.IRepository;
 import org.cp.LLD.library.repository.impl.BookRepository;
+import org.cp.LLD.library.service.IObservable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
