@@ -62,6 +62,10 @@ public class TransactionRepository implements IRepository<Transaction> {
 
     @Override
     public List<Transaction> getDataAfterCursor(Long cursor, int limit) {
+        if(cursor == null){
+            return this.transactions.stream().limit(limit + 1).toList();
+        }
+
         int entriesToSkip = findCursor(cursor);
         return this.transactions.stream().skip(entriesToSkip).limit(limit + 1).toList();
     }

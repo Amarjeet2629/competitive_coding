@@ -18,14 +18,7 @@ public class CursorPagination implements IPagination<Transaction> {
 
 
     private ResponseData<Transaction> fetchPage(int limit, Long cursor){
-        List<Transaction> data = new ArrayList<>();
-
-        if(cursor == null){
-            data.addAll(this.transactionRepository.getAllData().stream().limit(limit + 1).toList());
-        } else {
-            data.addAll(transactionRepository.getDataAfterCursor(cursor, limit));
-        }
-
+        List<Transaction> data = new ArrayList<>(transactionRepository.getDataAfterCursor(cursor, limit));
         if(data.size() <= limit){
             return new ResponseData<>(data, data.get(data.size() - 1).getTimestamp(), false, cursor);
         } else {
