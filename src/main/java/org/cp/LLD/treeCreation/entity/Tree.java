@@ -25,9 +25,7 @@ public class Tree {
 
         if(objectTree.leafColor != this.leafColor) return false;
         if(objectTree.bark != this.bark) return false;
-        if(objectTree.length != this.length) return false;
-
-        return true;
+        return objectTree.length == this.length;
     }
 
     @Override

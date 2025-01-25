@@ -25,17 +25,11 @@ public class Board {
         firstAvailableSlotByColumns.put(slot.y, slot.x - 1);
     }
 
-    public boolean isSlotAvailable(Slot slot){
-        return grid[slot.x][slot.y] == null;
-    }
 
     public boolean isFreeCellAvailable(){
-        for(int i = 0; i < grid.length; i++){
-            for(int j = 0; j < grid[0].length; j++){
-                if(grid[i][j] == null) return true;
-            }
+        for(Integer row: firstAvailableSlotByColumns.values()){
+            if(row != -1) return true;
         }
-
         return false;
     }
 

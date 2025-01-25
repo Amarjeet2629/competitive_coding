@@ -11,7 +11,7 @@ public class TreeGenerator {
 
     }
 
-    public Tree generateTree(TreeBuilder treeBuilder){
+    private Tree generateTree(TreeBuilder treeBuilder){
         return treeBuilder.build();
     }
 
@@ -30,8 +30,8 @@ public class TreeGenerator {
             Tree tree = generateTree(treeBuilder);
 
             if(!generatedTrees.containsKey(tree)){
-                listOfTrees.add(generateTree(treeBuilder));
                 generatedTrees.put(tree, 1);
+                listOfTrees.add(tree);
             }
 
         }

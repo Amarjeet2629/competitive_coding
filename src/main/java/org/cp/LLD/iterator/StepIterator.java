@@ -18,6 +18,8 @@ public class StepIterator implements Iterator<Integer>{
 
     @Override
     public Integer next() {
+        if(!hasNext()) throw new RuntimeException("No such element");
+
         Integer value = start;
         start += step;
         return value;

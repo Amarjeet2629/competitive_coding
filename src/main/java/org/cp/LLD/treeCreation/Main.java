@@ -9,7 +9,7 @@ public class Main {
         TreeGenerator treeGenerator = new TreeGenerator();
 
 
-        for(Tree tree: treeGenerator.getRandomTrees(10000)){
+        for(Tree tree: treeGenerator.getRandomTrees(100)){
             System.out.println(tree);
         }
     }

@@ -27,9 +27,9 @@ public class CursorPagination implements IPagination<Transaction> {
         }
 
         if(data.size() <= limit){
-            return new ResponseData<>(data, data.get(data.size() - 1).getTimestamp(), false);
+            return new ResponseData<>(data, data.get(data.size() - 1).getTimestamp(), false, cursor);
         } else {
-            return new ResponseData<>(data.subList(0, data.size() - 1), data.get(data.size() - 1).getTimestamp(), true);
+            return new ResponseData<>(data.subList(0, data.size() - 1), data.get(data.size() - 1).getTimestamp(), true, cursor);
         }
     }
 

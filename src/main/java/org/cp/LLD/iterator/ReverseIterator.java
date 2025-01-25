@@ -18,6 +18,7 @@ public class ReverseIterator<T> implements Iterator<T>{
 
     @Override
     public T next() {
+        if(!hasNext()) throw new RuntimeException("No such elememt");
         T value = collections.get(index);
         index--;
 

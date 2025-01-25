@@ -85,7 +85,7 @@ public class Main {
 
         System.out.println();
 
-        ChunkedIterator<Integer> chunkedIterator = new ChunkedIterator<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8), 3);
+        Iterator<List<Integer>> chunkedIterator = new ChunkedIterator2<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8), 5);
 
         while (chunkedIterator.hasNext()){
             List<Integer> values = chunkedIterator.next();

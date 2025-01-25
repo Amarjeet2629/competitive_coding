@@ -3,6 +3,9 @@ package org.cp.LLD.iterator;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+This implementation is not correct;
+ */
 public class ChunkedIterator<T> {
     private final Iterator<T> basicIterator;
     private final int chunk;

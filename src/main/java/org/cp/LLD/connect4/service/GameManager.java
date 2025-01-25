@@ -21,6 +21,7 @@ public class GameManager {
 
     private void initializeGame(int m, int n){
         board = new Board(m, n);
+
         Player player1 = new Player(1, "Amarjeet", Piece.O);
         Player player2 = new Player(2, "Prachi", Piece.X);
 
@@ -38,6 +39,7 @@ public class GameManager {
             Scanner scanner = new Scanner(System.in);
             Player player = players.peek();
 
+            assert player != null;
             this.gameEventNotifier.notifyGameEvent("Player: " + player.getId() + " please select a slot to proceed.");
             int column = scanner.nextInt();
 
@@ -55,13 +57,9 @@ public class GameManager {
 
             Slot slot = new Slot(row, column);
 
-            if(!board.isSlotAvailable(slot)){
-                gameEventNotifier.notifyGameEvent("Please select an empty slot.");
-                continue;
-            }
-
             player = players.poll();
             assert player != null;
+
             board.addPiece(player.getPiece(), slot);
 
             if(isGameCompleted(slot, player.getPiece())){

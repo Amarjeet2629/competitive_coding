@@ -49,6 +49,7 @@ public class APIDriver {
 
         while(responseData == null || responseData.isHasMore()){
             responseData = cursorPagination.fetchPage(7, responseData == null ? null : responseData.getCursor(), filter);
+            System.out.println("Back cursor: " + responseData.getBackCursor() + ", Next cursor: " + responseData.getCursor());
             printData(responseData.getData());
         }
     }

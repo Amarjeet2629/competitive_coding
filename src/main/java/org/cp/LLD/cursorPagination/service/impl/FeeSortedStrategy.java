@@ -4,7 +4,6 @@ import org.cp.LLD.cursorPagination.entity.SortingOrder;
 import org.cp.LLD.cursorPagination.entity.Transaction;
 import org.cp.LLD.cursorPagination.service.ITransactionSortingStrategy;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class FeeSortedStrategy implements ITransactionSortingStrategy {
