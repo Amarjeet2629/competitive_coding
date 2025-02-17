@@ -13,6 +13,10 @@ public class StepIterator implements Iterator<Integer>{
 
     @Override
     public boolean hasNext() {
+        if(step < 0){
+            return start >= end;
+        }
+
         return start <= end;
     }
 

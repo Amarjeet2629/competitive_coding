@@ -24,6 +24,8 @@ public class CursorPagination implements IPagination<Transaction> {
         } else {
             return new ResponseData<>(data.subList(0, data.size() - 1), data.get(data.size() - 1).getTimestamp(), true, cursor);
         }
+
+
     }
 
     public ResponseData<Transaction> fetchPage(int limit, Long cursor, Filter<Transaction> filters){

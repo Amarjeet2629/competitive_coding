@@ -147,6 +147,11 @@ public class Main {
 
         System.out.println();
 
+      Iterator<Integer> iterator =  new StepIterator(10, 1, -3);
+      while(iterator.hasNext()){
+          System.out.print(iterator.next() + ", ");
+      }
+
 
     }
 }

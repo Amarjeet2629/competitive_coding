@@ -71,8 +71,6 @@ public class TransactionRepository implements IRepository<Transaction> {
     }
 
     private int findCursor(Long cursor){
-
-
         for(int i = 0; i < transactions.size(); i++){
             if(transactions.get(i).getTimestamp() >= cursor){
                 return i;

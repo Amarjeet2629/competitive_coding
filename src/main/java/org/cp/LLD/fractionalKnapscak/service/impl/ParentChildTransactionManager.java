@@ -15,7 +15,7 @@ public class ParentChildTransactionManager implements IFeeCalculator {
 
         for(Transaction transaction: transactionList){
             idVsTransaction.put(transaction.getId(), transaction);
-            if(nodeVsInDeg.containsKey(transaction.getId())){
+            if(!nodeVsInDeg.containsKey(transaction.getId())){
                 nodeVsInDeg.put(transaction.getId(), 0);
             }
 

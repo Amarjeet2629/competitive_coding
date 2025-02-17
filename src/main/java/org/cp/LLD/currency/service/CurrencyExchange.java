@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CurrencyExchange implements ICurrencyExchangeStrategy {
-    List<CurrencyExchangeValue> currencyExchangeValues = new ArrayList<>();
+    List<CurrencyExchangeValue> currencyExchangeValues;
 
     public CurrencyExchange(List<CurrencyExchangeValue> currencyExchangeValues){
         this.currencyExchangeValues = currencyExchangeValues;
@@ -39,6 +39,7 @@ public class CurrencyExchange implements ICurrencyExchangeStrategy {
     @Override
     public double exchange(Currency start, Currency end) {
         HashMap<Currency, List<CurrencyExchangeValue>> currencyExchangeValueHashMap = new HashMap<>();
+
         for(CurrencyExchangeValue currencyExchangeValue : currencyExchangeValues){
             Currency startCurrency = currencyExchangeValue.getStartCurrency();
             List<CurrencyExchangeValue> exchangeValueList = currencyExchangeValueHashMap.getOrDefault(
